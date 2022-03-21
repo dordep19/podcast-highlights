@@ -13,7 +13,7 @@ import pytextrank
 class Highlighter():
 
     """
-    Store highlights id/result and load Spacy pipeline for English
+    Store highlights id/result and load spaCy pipeline for English
     """
     def __init__(self):
         self.results = {}

@@ -23,7 +23,7 @@ To run the podcast highlights server in development mode:
 uvicorn server:app --reload
 ```
 
-NLP tasks are executed using Spacy's pipeline for the English language that has been trained on written text (blogs, news, comments).
+NLP tasks are executed using spaCy's pipeline for the English language that has been trained on written text (blogs, news, comments).
 
 ```
 python3 -m spacy download en_core_web_lg
