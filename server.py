@@ -3,7 +3,6 @@ This file implements the REST API that serves podcast transcript uploads and
 requests for suggested podcast highlights. 
 """
 from fastapi import FastAPI, HTTPException, UploadFile, File
-from pygments import highlight
 from starlette.responses import RedirectResponse
 
 from highlighter import Highlighter
