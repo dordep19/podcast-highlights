@@ -3,10 +3,14 @@ This file implements the REST API that serves podcast transcript uploads and
 requests for suggested podcast highlights. 
 """
 from fastapi import FastAPI, HTTPException, UploadFile, File
+from pygments import highlight
 from starlette.responses import RedirectResponse
+
+from highlighter import Highlighter
 
 
 app = FastAPI()
+highlighter = Highlighter()
 
 
 @app.get("/")
@@ -16,6 +20,8 @@ def root():
 
 @app.post("/analyze")
 def analyze_file(file: UploadFile = File(...)):
+    id = highlighter.analyze(file)
+
     return {
         "id": -1
     }
@@ -25,13 +31,7 @@ def analyze_file(file: UploadFile = File(...)):
 def get_highlights(id: int):
     try:
         return {
-            "highlights": [
-                {
-                    "id": -1,
-                    "start_time": -1,
-                    "end_time": -1
-                }
-            ]
+            "highlights": highlighter.highlights(id)
         }
     except:
         raise HTTPException(status_code=400, 
