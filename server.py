@@ -31,7 +31,7 @@ def get_highlights(id: int):
     try:
         return {
             "file_id": id,
-            "highlights": highlighter.highlights(id)
+            "results": highlighter.highlights(id)
         }
     except:
         raise HTTPException(status_code=400, 
