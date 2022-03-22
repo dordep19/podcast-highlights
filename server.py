@@ -18,11 +18,11 @@ def root():
 
 
 @app.post("/analyze")
-def analyze_file(file: UploadFile = File(...)):
-    id = highlighter.analyze(file)
+def analyze_file(time: int, file: UploadFile = File(...)):
+    id = highlighter.analyze(time, file)
 
     return {
-        "id": -1
+        "file_id": id
     }
 
 
@@ -30,6 +30,7 @@ def analyze_file(file: UploadFile = File(...)):
 def get_highlights(id: int):
     try:
         return {
+            "file_id": id,
             "highlights": highlighter.highlights(id)
         }
     except:
